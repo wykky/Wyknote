@@ -11,8 +11,11 @@ public class GUI {
     JTextArea textArea; //class 2
     JScrollPane scrollPane; // class 3
     JMenuBar menuBar; //class 4
-    JMenu menuFile, menuEdit, menuSettings, menuHelp; //Class 5
-    JMenuItem iNew, iNewWindow, iOpen, iSave, iSaveAs, iExit; //class 6
+    JMenu menuFile, menuEdit, menuSettings, menuHelp; // Class 5
+    JMenuItem iNew, iNewWindow, iOpen, iSave, iSaveAs, iExit; // class 6
+    JMenuItem iUndo, iCut, iCopy, iPaste, iDelete, iSelectAll, iSearch; // class 7
+    JMenuItem iZoom, iFont, iColors, iWordWrap; // class 8
+    JMenuItem iSendFeedback, iAboutWyknote; // class 9
 
     public static void main(String[] args){
         new GUI();
@@ -24,6 +27,9 @@ public class GUI {
     createTextArea();
     createMenuBar();
     createFileMenu();
+    createEditMenu();
+    createSettingsMenu();
+    createHelpMenu();
     window.setVisible(true);
     }
     //method #1 WINDOW
@@ -71,6 +77,46 @@ public class GUI {
         menuFile.add(iExit);
     }
 
+    //method #5 - edit sub item menu
+    public void createEditMenu(){
+        iUndo =new JMenuItem("Undo");
+        menuEdit.add(iUndo);
+        iCut =new JMenuItem("Cut");
+        menuEdit.add(iCut);
+        iCopy =new JMenuItem("Copy");
+        menuEdit.add(iCopy);
+        iPaste =new JMenuItem("Paste");
+        menuEdit.add(iPaste);
+        iDelete =new JMenuItem("Delete");
+        menuEdit.add(iDelete);
+        menuEdit.addSeparator(); // add a separator
+        iSelectAll =new JMenuItem("Select All");
+        menuEdit.add(iSelectAll);
+        iSearch =new JMenuItem("Search");
+        menuEdit.add(iSearch);
+    }
+
+    //method #6 - settings sub item menu
+    public void createSettingsMenu(){
+        iZoom =new JMenuItem("Zoom");
+        menuSettings.add(iZoom);
+        iFont =new JMenuItem("Font");
+        menuSettings.add(iFont);
+        iColors =new JMenuItem("Colors");
+        menuSettings.add(iColors);
+        iWordWrap =new JMenuItem("Word Warp");
+        menuSettings.add(iWordWrap);
+        
+    }
+    //method #7 - file sub item menu
+    public void createHelpMenu(){
+        iSendFeedback =new JMenuItem("Send Feedback");
+        menuHelp.add(iSendFeedback);
+        iAboutWyknote =new JMenuItem("About Wyknote");
+        menuHelp.add(iAboutWyknote);
+    }
 }
+// to do: vid 3/8.. create sub munu for Zoom (in and out)
+// add function for each menu
 
 
