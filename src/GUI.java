@@ -1,3 +1,6 @@
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -6,7 +9,8 @@ import javax.swing.JTextArea;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-public class GUI {
+
+public class GUI implements ActionListener{
     JFrame window; //class 1
     JTextArea textArea; //class 2
     JScrollPane scrollPane; // class 3
@@ -16,6 +20,9 @@ public class GUI {
     JMenuItem iUndo, iCut, iCopy, iPaste, iDelete, iSelectAll, iSearch; // class 7
     JMenuItem iZoom, iFont, iColors, iWordWrap; // class 8
     JMenuItem iSendFeedback, iAboutWyknote; // class 9
+
+
+    File_Menu file = new File_Menu(this);
 
     public static void main(String[] args){
         new GUI();
@@ -64,10 +71,17 @@ public class GUI {
     //method #4 - file sub item menu
     public void createFileMenu(){
         iNew =new JMenuItem("New");
+        iNew.addActionListener(this);
+        iNew.setActionCommand("New");
         menuFile.add(iNew);
+        
         iNewWindow =new JMenuItem("New WIndow");
         menuFile.add(iNewWindow);
+        
         iOpen =new JMenuItem("Open...");
+        iOpen.addActionListener(this);
+        iOpen.setActionCommand("Open");
+        
         menuFile.add(iOpen);
         iSave =new JMenuItem("Save");
         menuFile.add(iSave);
@@ -108,15 +122,26 @@ public class GUI {
         menuSettings.add(iWordWrap);
         
     }
-    //method #7 - file sub item menu
+    //method #7 - help sub item menu
     public void createHelpMenu(){
         iSendFeedback =new JMenuItem("Send Feedback");
         menuHelp.add(iSendFeedback);
         iAboutWyknote =new JMenuItem("About Wyknote");
         menuHelp.add(iAboutWyknote);
     }
+
+    //action performed method
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        String command = e.getActionCommand();
+        switch (command){
+            case "New": file.newFile();break;
+            case "Open": file.open();break;
+        }
+    }
 }
-// to do: vid 3/8.. create sub munu for Zoom (in and out)
-// add function for each menu
 
 
+// next 4/8
+// finish open function, create save function
