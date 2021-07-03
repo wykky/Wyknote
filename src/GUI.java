@@ -22,7 +22,7 @@ public class GUI implements ActionListener{
     JMenuItem iSendFeedback, iAboutWyknote; // class 9
 
 
-    File_Menu file = new File_Menu(this);
+    FileMenu file = new FileMenu(this);
 
     public static void main(String[] args){
         new GUI();
