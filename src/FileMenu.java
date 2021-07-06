@@ -1,6 +1,7 @@
 import java.awt.FileDialog;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class FileMenu {
@@ -16,6 +17,8 @@ public class FileMenu {
     public void newFile(){
         gui.textArea.setText("");
         gui.window.setTitle("New");
+        fileName = null;
+        fileAddress = null;
     }
 
     //Method to open a file
@@ -40,8 +43,50 @@ public class FileMenu {
             }
             br.close();
         }
-        catch(Exception e){ System.out.println("FILE NOT OPENED!");}
+        catch(Exception e)
+        { System.out.println("FILE NOT OPENED!");
+    }
+    }
+
+    public void save(){
+        if(fileName==null){
+            saveAs();
+        }else{
+            try{ FileWriter fw = new FileWriter( fileAddress + fileName);
+                fw.write(gui.textArea.getText());
+                gui.window.setTitle(fileName); // set the file name
+                fw.close();
+
+            } catch(Exception e)
+            { System.out.println("SOMETHING IS WRONG BUDDY");}
+
+
+        }
+    }
+
+
+
+
+    public void saveAs(){
+        FileDialog fd =new FileDialog(gui.window, "Save", FileDialog.SAVE);
+        fd.setVisible(true);
+
+        if(fd.getFile()!=null) {
+            fileName = fd.getFile();
+            fileAddress = fd.getDirectory();
+            gui.window.setTitle(fileName);
+        }
+
+        try{
+            FileWriter fw = new FileWriter( fileAddress + fileName);
+            fw.write(gui.textArea.getText());
+            fw.close();
+        } catch(Exception e)
+        { System.out.println("SOMETHING IS WRONG BUDDY");}
+    }
+
+    public void exit(){
+        System.exit(0);
     }
 }
-
-// 5/8 work on saving files
+/// 6/8
