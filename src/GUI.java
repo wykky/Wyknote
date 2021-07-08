@@ -21,8 +21,11 @@ public class GUI implements ActionListener{
     JMenuItem iZoom, iFont, iColors, iWordWrap; // class 8
     JMenuItem iSendFeedback, iAboutWyknote; // class 9
 
+    boolean wordWrapOn =false; // initializing wordWrapOn
 
     FileMenu file = new FileMenu(this);
+    SettingsMenu settings = new SettingsMenu(this);
+
 
     public static void main(String[] args){
         new GUI();
@@ -127,7 +130,10 @@ public class GUI implements ActionListener{
         menuSettings.add(iFont);
         iColors =new JMenuItem("Colors");
         menuSettings.add(iColors);
-        iWordWrap =new JMenuItem("Word Warp");
+        
+        iWordWrap =new JMenuItem("Word Warp: Off");
+        iWordWrap.addActionListener(this);
+        iWordWrap.setActionCommand("Word Wrap");
         menuSettings.add(iWordWrap);
         
     }
@@ -150,6 +156,9 @@ public class GUI implements ActionListener{
             case "Save": file.save();break;
             case "SaveAs": file.saveAs();break;
             case "Exit": file.exit();break;
+            
+            //
+            case "Word Wrap": settings.wordWrap();break;
         }
     }
 }
